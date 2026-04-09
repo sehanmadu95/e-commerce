@@ -1,13 +1,28 @@
 import Header from "../components/Header";
 import "./HomePage.css";
 import { products } from "../../starting-code/data/products";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
-  fetch("http://localhost:3000/api/products").then((response) => {
-    response.json().then((data) => {
-      console.log(data);
-    });
-  });
+  // fetch("http://localhost:3000/api/products").then((response) => {
+  //   response.json().then((data) => {
+  //     console.log(data);
+  //   });
+  // });
+
+  const [products2, setProducts2] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/products")
+      .then((response) => {
+        setProducts2(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   //same as above but with better formatting
   // fetch("http://localhost:3000/api/products").then((response) => {
@@ -23,7 +38,7 @@ const HomePage = () => {
 
       <div className="home-page">
         <div className="products-grid">
-          {products.map((product) => {
+          {products2.map((product) => {
             return (
               <div key={product.id} className="product-container">
                 <div className="product-image-container">
