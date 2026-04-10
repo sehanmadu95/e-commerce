@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import "./HomePage.css";
-import { products } from "../../starting-code/data/products";
+// import { products } from "../../starting-code/data/products";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -12,16 +12,21 @@ const HomePage = () => {
   // });
 
   const [products2, setProducts2] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/products")
+      .get("/api/products")
       .then((response) => {
         setProducts2(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
+
+    axios.get("/api/cart-items").then((response) => {
+      setCartItems(response.data);
+    });
   }, []);
 
   //same as above but with better formatting
@@ -34,7 +39,7 @@ const HomePage = () => {
   return (
     <>
       <title>Home</title>
-      <Header />
+      <Header cartItems={cartItems} />
 
       <div className="home-page">
         <div className="products-grid">
