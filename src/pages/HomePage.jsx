@@ -1,18 +1,18 @@
 import Header from "../components/Header";
+import { formatMoney } from "../utils/money";
 import "./HomePage.css";
 // import { products } from "../../starting-code/data/products";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const HomePage = () => {
+const HomePage = ({  cartItems, }) => {
   // fetch("http://localhost:3000/api/products").then((response) => {
   //   response.json().then((data) => {
   //     console.log(data);
   //   });
   // });
 
-  const [products2, setProducts2] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+const [products2, setProducts2] = useState([]);
 
   useEffect(() => {
     axios
@@ -24,9 +24,7 @@ const HomePage = () => {
         console.error(error);
       });
 
-    axios.get("/api/cart-items").then((response) => {
-      setCartItems(response.data);
-    });
+   
   }, []);
 
   //same as above but with better formatting
@@ -64,7 +62,7 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                <div className="product-price">${product.priceCents / 100}</div>
+                <div className="product-price">{formatMoney(product.priceCents)}</div>
 
                 <div className="product-quantity-container">
                   <select>

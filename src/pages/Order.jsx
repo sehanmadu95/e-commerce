@@ -2,12 +2,12 @@ import Header from "../components/Header";
 import "./Orders.css";
 import { Link } from "react-router";
 
-const Order = () => {
+const Order = ({ cartItems }) => {
   return (
     <>
       {" "}
       <title>Orders</title>
-      <Header />
+      <Header cartItems={cartItems} />
       <div className="orders-page">
         <div className="page-title">Your Orders</div>
 
