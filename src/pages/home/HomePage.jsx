@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import { formatMoney } from "../utils/money";
+import Header from "../../components/Header";
+import { formatMoney } from "../../utils/money";
 import "./HomePage.css";
 // import { products } from "../../starting-code/data/products";
 import axios from "axios";

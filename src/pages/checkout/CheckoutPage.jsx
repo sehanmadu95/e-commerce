@@ -1,4 +1,4 @@
-import { formatMoney } from "../utils/money";
+import { formatMoney } from "../../utils/money";
 import "./CheckoutPage.css";
 import "./checkout-header.css";
 import { Link } from "react-router";
