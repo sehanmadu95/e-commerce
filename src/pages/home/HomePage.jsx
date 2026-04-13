@@ -16,14 +16,21 @@ const HomePage = ({ cartItems }) => {
   const [products2, setProducts2] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/products")
-      .then((response) => {
-        setProducts2(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // axios
+    //   .get("/api/products")
+    //   .then((response) => {
+    //     setProducts2(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+
+    const getHomeData = async () => {
+      const response = await axios.get("/api/products");
+      setProducts2(response.data);
+    };
+
+    getHomeData();
   }, []);
 
   //same as above but with better formatting
