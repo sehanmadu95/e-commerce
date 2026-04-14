@@ -36,7 +36,6 @@ const Order = ({ cartItems }) => {
                 <OrderHeader order={order} />
 
                 {order.products.map((orderProduct) => {
-                  console.log("OrderProduct", orderProduct);
 
                   return (
                     <div

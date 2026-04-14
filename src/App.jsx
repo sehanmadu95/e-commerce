@@ -9,16 +9,20 @@ import axios from "axios";
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
+  const getLoadCartItems = async () => {
+    const response = await axios.get("/api/cart-items?expand=product");
+    setCartItems(response.data);
+  };
+
   useEffect(() => {
-    const getCartItems = async () => {
-      const response = await axios.get("/api/cart-items?expand=product");
-      setCartItems(response.data);
-    };
     // axios.get("/api/cart-items?expand=product").then((response) => {
     //   setCartItems(response.data);
     // });
-    getCartItems();
+    getLoadCartItems();
   }, []);
+
+  // const appVesion = import.meta.env.VITE_APP_VERSION;
+  // console.log("App version: ", appVesion);
 
   return (
     <>
@@ -26,12 +30,14 @@ function App() {
         <Route
           index
           element={
-            <HomePage cartItems={cartItems} setCartItems={setCartItems} />
+            <HomePage cartItems={cartItems} loadCart={getLoadCartItems} />
           }
         />
         <Route
           path="/checkout"
-          element={<CheckoutPage cartItems={cartItems} />}
+          element={
+            <CheckoutPage cartItems={cartItems} loadCart={getLoadCartItems} />
+          }
         />
         <Route path="/orders" element={<Order cartItems={cartItems} />} />
         <Route path="/tracking" element={<Tracking />} />

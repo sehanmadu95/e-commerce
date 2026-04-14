@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductGrids from "./ProductGrids";
 
-const HomePage = ({ cartItems }) => {
+const HomePage = ({ cartItems , loadCart}) => {
   // fetch("http://localhost:3000/api/products").then((response) => {
   //   response.json().then((data) => {
   //     console.log(data);
@@ -46,7 +46,7 @@ const HomePage = ({ cartItems }) => {
       <Header cartItems={cartItems} />
 
       <div className="home-page">
-        <ProductGrids products={products2} />
+        <ProductGrids products={products2} loadCart={loadCart} />
       </div>
     </>
   );

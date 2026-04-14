@@ -3,7 +3,7 @@ import React from "react";
 import { formatMoney } from "../../utils/money";
 import DeliveryOptions from "./DeliveryOptions";
 
-const OrderSummary = ({ cartItems, deliveryOption }) => {
+const OrderSummary = ({ cartItems, deliveryOption, loadCart }) => {
   return (
     <div className="order-summary">
       {deliveryOption.length > 0 &&
@@ -45,7 +45,7 @@ const OrderSummary = ({ cartItems, deliveryOption }) => {
                   </div>
                 </div>
 
-                <DeliveryOptions deliveryOption={deliveryOption} item={item} />
+                <DeliveryOptions deliveryOption={deliveryOption} item={item} loadCart={loadCart} />
               
               </div>
             </div>
